@@ -2,6 +2,12 @@
 
 SimplySign webservice client
 
+# Installation
+
+`composer require webinv/simplysign`
+
+# Usage
+
 ## 1. Configuration
 
 ```

@@ -46,6 +46,18 @@ class Connection implements LoggerAwareInterface
 
     /**
      * @var string
+     * @see https://github.com/guzzle/guzzle/blob/master/src/MessageFormatter.php
+     */
+    private $requestLogFormat = '{request}';
+
+    /**
+     * @var string
+     * @see https://github.com/guzzle/guzzle/blob/master/src/MessageFormatter.php
+     */
+    private $responseLogFormat = '{response}';
+
+    /**
+     * @var string
      */
     private $domain;
 
@@ -68,6 +80,14 @@ class Connection implements LoggerAwareInterface
         if (isset($config['client_secret'])) {
             $this->setClientSecret($config['client_secret']);
         }
+
+        if (isset($config['request_log_format'])) {
+            $this->setRequestLogFormat($config['request_log_format']);
+        }
+
+        if (isset($config['response_log_format'])) {
+            $this->setResponseLogFormat($config['response_log_format']);
+        }
     }
 
 
@@ -84,13 +104,14 @@ class Connection implements LoggerAwareInterface
 
                 $stack->push(Middleware::log(
                     $this->logger,
-                    new MessageFormatter('{request}')
+                    new MessageFormatter($this->getRequestLogFormat())
                 ));
 
                 $stack->push(Middleware::log(
                     $this->logger,
-                    new MessageFormatter('{response}')
+                    new MessageFormatter($this->getResponseLogFormat())
                 ));
+
                 $config['handler'] = $stack;
             }
 
@@ -153,6 +174,40 @@ class Connection implements LoggerAwareInterface
     public function setDomain($domain)
     {
         $this->domain = $domain;
+    }
+
+    /**
+     * @return string
+     */
+    public function getRequestLogFormat()
+    {
+        return $this->requestLogFormat;
+    }
+
+    /**
+     * @param string $requestLogFormat
+     * @see https://github.com/guzzle/guzzle/blob/master/src/MessageFormatter.php
+     */
+    public function setRequestLogFormat($requestLogFormat)
+    {
+        $this->requestLogFormat = $requestLogFormat;
+    }
+
+    /**
+     * @return string
+     */
+    public function getResponseLogFormat()
+    {
+        return $this->responseLogFormat;
+    }
+
+    /**
+     * @param string $responseLogFormat
+     * @see https://github.com/guzzle/guzzle/blob/master/src/MessageFormatter.php
+     */
+    public function setResponseLogFormat($responseLogFormat)
+    {
+        $this->responseLogFormat = $responseLogFormat;
     }
 
     /**

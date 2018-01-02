@@ -6,6 +6,11 @@
 namespace SimplySign;
 
 use GuzzleHttp\ClientInterface;
+use GuzzleHttp\HandlerStack;
+use GuzzleHttp\MessageFormatter;
+use GuzzleHttp\Middleware;
+use Psr\Log\LoggerAwareInterface;
+use Psr\Log\LoggerInterface;
 
 /**
  * Class WebService
@@ -13,7 +18,7 @@ use GuzzleHttp\ClientInterface;
  * @package SimplySign
  * @author Krzysztof Kardasz <krzysztof@kardasz.eu>
  */
-class Connection
+class Connection implements LoggerAwareInterface
 {
     /**
      * @var
@@ -33,6 +38,11 @@ class Connection
      * @var ClientInterface
      */
     private $httpClient;
+
+    /**
+     * @var LoggerInterface
+     */
+    private $logger;
 
     /**
      * @var string
@@ -67,7 +77,24 @@ class Connection
     public function getHttpClient()
     {
         if (null === $this->httpClient) {
-            $this->httpClient = new \GuzzleHttp\Client();
+            $config = [];
+
+            if (null !== $this->logger) {
+                $stack = HandlerStack::create();
+
+                $stack->push(Middleware::log(
+                    $this->logger,
+                    new MessageFormatter('{request}')
+                ));
+
+                $stack->push(Middleware::log(
+                    $this->logger,
+                    new MessageFormatter('{response}')
+                ));
+                $config['handler'] = $stack;
+            }
+
+            $this->httpClient = new \GuzzleHttp\Client($config);
         }
         return $this->httpClient;
     }
@@ -126,5 +153,17 @@ class Connection
     public function setDomain($domain)
     {
         $this->domain = $domain;
+    }
+
+    /**
+     * Sets a logger instance on the object.
+     *
+     * @param LoggerInterface $logger
+     *
+     * @return void
+     */
+    public function setLogger(LoggerInterface $logger)
+    {
+        $this->logger = $logger;
     }
 }

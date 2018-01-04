@@ -1,4 +1,7 @@
 <?php
+/**
+ * SimplySign WebService Client
+ */
 
 namespace SimplySign\Client;
 
@@ -21,6 +24,7 @@ class SignatureFormatServicePades extends Client
      * @param Token $token
      * @return mixed
      * @throws Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function sign (SigningRequest $signingRequest, Token $token)
     {

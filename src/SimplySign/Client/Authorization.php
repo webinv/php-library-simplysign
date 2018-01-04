@@ -1,4 +1,7 @@
 <?php
+/**
+ * SimplySign WebService Client
+ */
 
 namespace SimplySign\Client;
 
@@ -33,6 +36,8 @@ class Authorization extends Client
      * @param $redirectUrl
      * @param $authorizationCode
      * @return Token
+     * @throws Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getAccessTokenByAuthorizationCode($redirectUrl, $authorizationCode)
     {
@@ -80,6 +85,8 @@ class Authorization extends Client
     /**
      * @param Token $token
      * @return Token
+     * @throws Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function refreshToken (Token $token)
     {

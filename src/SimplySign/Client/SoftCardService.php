@@ -1,12 +1,16 @@
 <?php
+/**
+ * SimplySign WebService Client
+ */
 
 namespace SimplySign\Client;
 
 use SimplySign\Client;
 use SimplySign\Exception;
-use SimplySign\Model\Pades\SigningRequest;
-use Ramsey\Uuid\Uuid;
+use SimplySign\Model\SoftCard\Certificate;
 use SimplySign\Model\Token;
+use SimplySign\Response\MultipartResponse;
+use SimplySign\Client\SoftCardService\SoftCardServiceException;
 
 /**
  * Class SoftCardService
@@ -104,11 +108,11 @@ class SoftCardService extends Client
     /**
      * @param $card
      * @param Token $token
-     * @return mixed
+     * @return Certificate[]
      * @throws Exception
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function fetchCerts ($card, Token $token)
+    public function getCertificates ($card, Token $token)
     {
         $results = $this->createCardCertificatesTask($card, $token);
 
@@ -149,12 +153,63 @@ class SoftCardService extends Client
                         $token->getTokenType(),
                         $token->getAccessToken()
                     ),
-                    'Accept' => 'application/json'
+                    'Accept' => 'multipart/form-data, application/json'
                 ],
                 'allow_redirects' => false
             ]
         );
 
-        return $this->_parseResponse($response);
+        $multipartResponse = new MultipartResponse($response);
+        if (!$multipartResponse->isMultipart()) {
+            throw new SoftCardServiceException(
+                'Invalid response, multipart expected'
+            );
+        }
+
+        if (!$multipartResponse->hasItem('certificate') || !$multipartResponse->hasItem('res')) {
+            throw new SoftCardServiceException(
+                'Invalid response, multipart/form-data  certificate or res missing'
+            );
+        }
+
+        $certificates = [];
+        $details = [];
+
+        foreach ($multipartResponse->getItem('res') as $item) {
+            if (0 !== strcasecmp($item->getContentType(), 'application/json')) {
+                throw new SoftCardServiceException(
+                    sprintf('Invalid response, multipart/form-data "res" invalid Content-type: "%s"', $item->getContentType())
+                );
+            }
+
+            $collection = json_decode((string)$item->getBody(), true);
+            foreach ($collection as $json) {
+                if (isset($json['filename'])) {
+                    $details[$json['filename']] = $json;
+                }
+            }
+        }
+
+        foreach ($multipartResponse->getItem('certificate') as $item) {
+            $options = $item->getContentDispositionOptions();
+            if (!isset($options['filename'])) {
+                throw new SoftCardServiceException(
+                    'Invalid response, multipart/form-data certificate filename missing'
+                );
+            }
+
+            if (!isset($details[$options['filename']])) {
+                throw new SoftCardServiceException(
+                    sprintf('Invalid response, multipart/form-data certificate filename "%s" json missing', $options['filename'])
+                );
+            }
+
+            $certificates[] = new Certificate(
+                $details[$options['filename']],
+                $item->getBody()
+            );
+        }
+
+        return $certificates;
     }
 }

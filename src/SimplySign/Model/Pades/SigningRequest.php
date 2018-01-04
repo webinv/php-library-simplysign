@@ -1,4 +1,7 @@
 <?php
+/**
+ * SimplySign WebService Client
+ */
 
 namespace SimplySign\Model\Pades;
 

@@ -1,6 +1,6 @@
 <?php
 /**
- * SimplySign WebService
+ * SimplySign WebService Client
  */
 
 namespace SimplySign;

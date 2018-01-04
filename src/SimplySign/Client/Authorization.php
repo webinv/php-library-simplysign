@@ -63,6 +63,7 @@ class Authorization extends Client
      * @param $password
      * @return Token
      * @throws Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
      */
     public function getAccessTokenByEmailPassword ($email, $password)
     {
@@ -84,7 +85,6 @@ class Authorization extends Client
 
     /**
      * @param Token $token
-     * @return Token
      * @throws Exception
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
@@ -104,7 +104,11 @@ class Authorization extends Client
                 ]
             );
 
-            return $this->_parseResponseToken($response);
+            $refreshToken = $this->_parseResponseToken($response);
+
+            $token->setAccessToken($refreshToken->getAccessToken());
+            $token->setExpires($refreshToken->getExpires());
+            $token->setTokenType($refreshToken->getTokenType());
         }
     }
 

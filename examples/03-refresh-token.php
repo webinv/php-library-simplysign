@@ -13,13 +13,13 @@ $connection = new Connection([
 
 $client = new Authorization($connection);
 
-$oldToken = new \SimplySign\Model\Token([
+$token = new \SimplySign\Model\Token([
     'access_token' => '*******************************************',
     'token_type' => 'bearer',
     'expires_in' => 7200,
     'refresh_token' => '*******************************************'
 ]);
 
-$newToken = $client->refreshToken($oldToken);
+$client->refreshToken($token);
 
-print_r($newToken);
+print_r($token);

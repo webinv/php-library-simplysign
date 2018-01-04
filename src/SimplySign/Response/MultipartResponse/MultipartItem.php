@@ -200,9 +200,6 @@ class MultipartItem
         if (null === $this->contentTypeData) {
             $this->contentTypeData = $this->parseHeader($this->getHeaderLine('Content-type'));
         }
-        print_r($this->headers);
-        var_dump($this->getHeaderLine('Content-type'));
-        print_r($this->contentTypeData);
         return $this->contentTypeData;
     }
 

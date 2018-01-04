@@ -135,7 +135,6 @@ class SoftCardService extends Client
         }
 
         if ($results['state'] != 'done') {
-            print_r($results);
             throw new Exception(sprintf('Invalid response, state: %s', $results['state']));
         }
 

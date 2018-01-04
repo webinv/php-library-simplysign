@@ -12,10 +12,10 @@ namespace SimplySign;
  */
 class Version
 {
-    const VERSION = '1.0.3';
-    const VERSION_ID = 10003;
+    const VERSION = '1.0.4';
+    const VERSION_ID = 10004;
     const MAJOR_VERSION = 1;
     const MINOR_VERSION = 0;
-    const RELEASE_VERSION = 3;
+    const RELEASE_VERSION = 4;
     const EXTRA_VERSION = '';
 }

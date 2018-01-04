@@ -101,6 +101,14 @@ class Certificate
     /**
      * @return mixed|null
      */
+    public function getFingerprint()
+    {
+        return $this->getDetail(self::FIELD_FINGERPRINT);
+    }
+
+    /**
+     * @return mixed|null
+     */
     public function getFilename()
     {
         return $this->getDetail(self::FIELD_FILENAME);

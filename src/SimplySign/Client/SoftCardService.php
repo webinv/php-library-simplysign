@@ -26,7 +26,7 @@ class SoftCardService extends Client
      * @throws Exception
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function createCardsTask (Token $token)
+    public function createCardsTask(Token $token)
     {
         $response = $this->getConnection()->getHttpClient()->request(
             'POST',
@@ -54,7 +54,7 @@ class SoftCardService extends Client
      * @throws Exception
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function createCardCertificatesTask ($card, Token $token)
+    public function createCardCertificatesTask($card, Token $token)
     {
         $response = $this->getConnection()->getHttpClient()->request(
             'POST',
@@ -83,9 +83,9 @@ class SoftCardService extends Client
      * @throws Exception
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function getTask ($link, Token $token)
+    public function getTask($link, Token $token)
     {
-        $url = sprintf('%s%s', $this->getConnection()->getDomain(), parse_url ($link,PHP_URL_PATH));
+        $url = sprintf('%s%s', $this->getConnection()->getDomain(), parse_url($link, PHP_URL_PATH));
         $response = $this->getConnection()->getHttpClient()->request(
             'GET',
             $url,
@@ -112,7 +112,7 @@ class SoftCardService extends Client
      * @throws Exception
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function getCertificates ($card, Token $token)
+    public function getCertificates($card, Token $token)
     {
         $results = $this->createCardCertificatesTask($card, $token);
 
@@ -144,7 +144,7 @@ class SoftCardService extends Client
 
         $response = $this->getConnection()->getHttpClient()->request(
             'GET',
-            sprintf('%s%s', $this->getConnection()->getDomain(), parse_url ($results['atom:link'],PHP_URL_PATH)),
+            sprintf('%s%s', $this->getConnection()->getDomain(), parse_url($results['atom:link'], PHP_URL_PATH)),
             [
                 'headers' => [
                     'Authorization' => sprintf(

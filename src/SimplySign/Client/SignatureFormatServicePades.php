@@ -26,7 +26,7 @@ class SignatureFormatServicePades extends Client
      * @throws Exception
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function sign (SigningRequest $signingRequest, Token $token)
+    public function sign(SigningRequest $signingRequest, Token $token)
     {
         $response = $this->getConnection()->getHttpClient()->request(
             'POST',

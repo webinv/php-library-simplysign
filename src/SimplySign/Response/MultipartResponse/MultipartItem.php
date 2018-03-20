@@ -128,7 +128,7 @@ class MultipartItem
      * @return MultipartItem
      * @throws MultipartResponseException
      */
-    static public function fromString($content)
+    public static function fromString($content)
     {
         $chunks = preg_split('/(\r?\n){2}/', $content, 2);
         if (count($chunks) < 2) {

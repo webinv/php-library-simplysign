@@ -22,7 +22,7 @@ class Authorization extends Client
      * @param $redirectUrl
      * @return string
      */
-    public function getAuthorizationUrl ($redirectUrl)
+    public function getAuthorizationUrl($redirectUrl)
     {
         return sprintf(
             '%s/idp/oauth2.0/authorize?response_type=code&client_id=%s&redirect_uri=%s',
@@ -65,7 +65,7 @@ class Authorization extends Client
      * @throws Exception
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function getAccessTokenByEmailPassword ($email, $password)
+    public function getAccessTokenByEmailPassword($email, $password)
     {
         $response = $this->getConnection()->getHttpClient()->request(
             'POST',
@@ -88,7 +88,7 @@ class Authorization extends Client
      * @throws Exception
      * @throws \GuzzleHttp\Exception\GuzzleException
      */
-    public function refreshToken (Token $token)
+    public function refreshToken(Token $token)
     {
         if ($token->isExpired()) {
             $response = $this->getConnection()->getHttpClient()->request(

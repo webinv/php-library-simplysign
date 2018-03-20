@@ -43,7 +43,7 @@ abstract class Client
      * @return mixed
      * @throws Exception
      */
-    protected function _parseResponse (ResponseInterface $response)
+    protected function _parseResponse(ResponseInterface $response)
     {
         $body = (string)$response->getBody();
         if (!empty($body)) {

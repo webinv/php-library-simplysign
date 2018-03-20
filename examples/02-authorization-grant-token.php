@@ -20,4 +20,3 @@ if (isset($_GET['code'])) {
 } else {
     header(sprintf('Location: %s', $client->getAuthorizationUrl($redirectUrl)));
 }
-

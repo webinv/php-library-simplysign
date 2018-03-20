@@ -50,7 +50,7 @@ class Token implements \JsonSerializable
 
         if (isset($data['expires_in'])) {
             $this->setExpires(date(\DateTime::ATOM, time()+(int)$data['expires_in']));
-        } else if (isset($data['expires'])) {
+        } elseif (isset($data['expires'])) {
             $this->setExpires(date(\DateTime::ATOM, strtotime($data['expires'])));
         }
 
@@ -110,7 +110,7 @@ class Token implements \JsonSerializable
     /**
      * @return bool
      */
-    public function isExpired ()
+    public function isExpired()
     {
         return time() > strtotime($this->getExpires());
     }

@@ -13,4 +13,5 @@ use SimplySign\Exception;
  * @author Krzysztof Kardasz <krzysztof@kardasz.eu>
  */
 class MultipartResponseException extends Exception
-{}
+{
+}

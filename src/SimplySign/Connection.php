@@ -3,7 +3,7 @@
  * SimplySign WebService Client
  */
 
-namespace SimplySign;
+namespace Webinv\SimplySign;
 
 use GuzzleHttp\ClientInterface;
 use GuzzleHttp\HandlerStack;
@@ -15,7 +15,7 @@ use Psr\Log\LoggerInterface;
 /**
  * Class WebService
  *
- * @package SimplySign
+ * @package Webinv\SimplySign
  * @author Krzysztof Kardasz <krzysztof@kardasz.eu>
  */
 class Connection implements LoggerAwareInterface

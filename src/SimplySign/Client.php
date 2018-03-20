@@ -3,14 +3,14 @@
  * SimplySign WebService Client
  */
 
-namespace SimplySign;
+namespace Webinv\SimplySign;
 
 use Psr\Http\Message\ResponseInterface;
 
 /**
  * Class Client
  *
- * @package SimplySign
+ * @package Webinv\SimplySign
  * @author Krzysztof Kardasz <krzysztof@kardasz.eu>
  */
 abstract class Client

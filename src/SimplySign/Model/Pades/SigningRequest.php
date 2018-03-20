@@ -3,15 +3,15 @@
  * SimplySign WebService Client
  */
 
-namespace SimplySign\Model\Pades;
+namespace Webinv\SimplySign\Model\Pades;
 
-use SimplySign\Exception;
-use SimplySign\Model\Pades\Signing\Credentials;
+use Webinv\SimplySign\Exception;
+use Webinv\SimplySign\Model\Pades\Signing\Credentials;
 
 /**
  * Class SigningRequest
  *
- * @package SimplySign\Model\Pades
+ * @package Webinv\SimplySign\Model\Pades
  * @author Krzysztof Kardasz <krzysztof@kardasz.eu>
  */
 class SigningRequest implements \JsonSerializable

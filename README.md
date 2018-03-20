@@ -11,8 +11,8 @@ SimplySign webservice client
 ## 1. Configuration
 
 ```
-use SimplySign\Connection;
-use SimplySign\Client\Authorization;
+use Webinv\SimplySign\Connection;
+use Webinv\SimplySign\Client\Authorization;
 
 $connection = new Connection([
     'client_id' => '**client_id**',
@@ -26,7 +26,7 @@ $connection = new Connection([
 ### 2.1 Authorization Code
 
 ```
-use SimplySign\Client\Authorization;
+use Webinv\SimplySign\Client\Authorization;
 
 $client = new Authorization($connection);
 $redirectUrl = 'http://example.com/02-authorization-grant-token.php';
@@ -41,7 +41,7 @@ if (isset($_GET['code'])) {
 ### 2.2 Resource Owner Password Credentials
 
 ```
-use SimplySign\Client\Authorization;
+use Webinv\SimplySign\Client\Authorization;
 
 $client = new Authorization($connection);
 $token = $client->getAccessTokenByEmailPassword('example@domain.com', '******');
@@ -50,15 +50,15 @@ $token = $client->getAccessTokenByEmailPassword('example@domain.com', '******');
 ## 2. Signing PDF document
 
 ```
-use SimplySign\Client\SignatureFormatServicePades;
-use SimplySign\Model\Pades\SigningRequest;
-use SimplySign\Model\Pades\Signing\Credentials;
+use Webinv\SimplySign\Client\SignatureFormatServicePades;
+use Webinv\SimplySign\Model\Pades\SigningRequest;
+use Webinv\SimplySign\Model\Pades\Signing\Credentials;
 
 
 $client = new SignatureFormatServicePades($connection);
 
 // Create token or you can obrain a new one
-$token = new \SimplySign\Model\Token([
+$token = new \Webinv\SimplySign\Model\Token([
     'access_token' => '*******************************************',
     'token_type' => 'bearer',
     'expires_in' => 7200,
@@ -83,8 +83,8 @@ file_put_contents(__DIR__ . '/signed_document.pdf', base64_decode($signed));
 ## 3. Certificates list
 
 ```
-use SimplySign\Connection;
-use SimplySign\Client\SoftCardService;
+use Webinv\SimplySign\Connection;
+use Webinv\SimplySign\Client\SoftCardService;
 
 $connection = new Connection([
     'client_id' => '**client_id**',
@@ -94,7 +94,7 @@ $connection = new Connection([
 
 $client = new SoftCardService($connection);
 
-$token = new \SimplySign\Model\Token([
+$token = new \Webinv\SimplySign\Model\Token([
     'access_token' => '*******************************************',
     'token_type' => 'bearer',
     'expires_in' => 7200,

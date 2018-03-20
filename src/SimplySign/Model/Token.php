@@ -3,12 +3,12 @@
  * SimplySign WebService Client
  */
 
-namespace SimplySign\Model;
+namespace Webinv\SimplySign\Model;
 
 /**
  * Class AccessToken
  *
- * @package SimplySign\Model
+ * @package Webinv\SimplySign\Model
  * @author Krzysztof Kardasz <krzysztof@kardasz.eu>
  */
 class Token implements \JsonSerializable

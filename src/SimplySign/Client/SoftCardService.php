@@ -3,19 +3,19 @@
  * SimplySign WebService Client
  */
 
-namespace SimplySign\Client;
+namespace Webinv\SimplySign\Client;
 
-use SimplySign\Client;
-use SimplySign\Exception;
-use SimplySign\Model\SoftCard\Certificate;
-use SimplySign\Model\Token;
-use SimplySign\Response\MultipartResponse;
-use SimplySign\Client\SoftCardService\SoftCardServiceException;
+use Webinv\SimplySign\Client;
+use Webinv\SimplySign\Exception;
+use Webinv\SimplySign\Model\SoftCard\Certificate;
+use Webinv\SimplySign\Model\Token;
+use Webinv\SimplySign\Response\MultipartResponse;
+use Webinv\SimplySign\Client\SoftCardService\SoftCardServiceException;
 
 /**
  * Class SoftCardService
  *
- * @package SimplySign\Client
+ * @package Webinv\SimplySign\Client
  * @author Krzysztof Kardasz <krzysztof@kardasz.eu>
  */
 class SoftCardService extends Client

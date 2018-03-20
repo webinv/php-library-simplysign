@@ -2,8 +2,9 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use SimplySign\Connection;
-use SimplySign\Client\SoftCardService;
+use Webinv\SimplySign\Connection;
+use Webinv\SimplySign\Client\SoftCardService;
+use Webinv\SimplySign\Model\Token;
 
 $connection = new Connection([
     'client_id' => '**client_id**',
@@ -13,7 +14,7 @@ $connection = new Connection([
 
 $client = new SoftCardService($connection);
 
-$token = new \SimplySign\Model\Token([
+$token = new Token([
     'access_token' => '*******************************************',
     'token_type' => 'bearer',
     'expires_in' => 7200,

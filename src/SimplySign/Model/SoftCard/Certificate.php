@@ -3,11 +3,11 @@
  * SimplySign WebService Client
  */
 
-namespace SimplySign\Model\SoftCard;
+namespace Webinv\SimplySign\Model\SoftCard;
 
 /**
  * Class Certificate
- * @package SimplySign\Model\SoftCard
+ * @package Webinv\SimplySign\Model\SoftCard
  * @author Krzysztof Kardasz <krzysztof@kardasz.eu>
  */
 class Certificate

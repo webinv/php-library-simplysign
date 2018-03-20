@@ -3,12 +3,12 @@
  * SimplySign WebService Client
  */
 
-namespace SimplySign\Model\Pades\Signing;
+namespace Webinv\SimplySign\Model\Pades\Signing;
 
 /**
  * Class Credentials
  *
- * @package SimplySign\Model\Pades\Signing
+ * @package Webinv\SimplySign\Model\Pades\Signing
  * @author Krzysztof Kardasz <krzysztof@kardasz.eu>
  */
 class Credentials implements \JsonSerializable

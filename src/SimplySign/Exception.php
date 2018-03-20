@@ -3,14 +3,14 @@
  * SimplySign WebService Client
  */
 
-namespace SimplySign;
+namespace Webinv\SimplySign;
 
 use Throwable;
 
 /**
  * Class Exception
  *
- * @package SimplySign
+ * @package Webinv\SimplySign
  * @author Krzysztof Kardasz <krzysztof@kardasz.eu>
  */
 class Exception extends \Exception

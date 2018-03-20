@@ -2,8 +2,8 @@
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
-use SimplySign\Connection;
-use SimplySign\Client\Authorization;
+use Webinv\SimplySign\Connection;
+use Webinv\SimplySign\Client\Authorization;
 
 $connection = new Connection([
     'client_id' => '**client_id**',

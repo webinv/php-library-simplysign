@@ -3,15 +3,15 @@
  * SimplySign WebService Client
  */
 
-namespace SimplySign\Response;
+namespace Webinv\SimplySign\Response;
 
 use Psr\Http\Message\ResponseInterface;
-use SimplySign\Response\MultipartResponse\MultipartItem;
-use SimplySign\Response\MultipartResponse\MultipartResponseException;
+use Webinv\SimplySign\Response\MultipartResponse\MultipartItem;
+use Webinv\SimplySign\Response\MultipartResponse\MultipartResponseException;
 
 /**
  * Class MultipartResponse
- * @package SimplySign\Response
+ * @package Webinv\SimplySign\Response
  * @author Krzysztof Kardasz <krzysztof@kardasz.eu>
  */
 class MultipartResponse

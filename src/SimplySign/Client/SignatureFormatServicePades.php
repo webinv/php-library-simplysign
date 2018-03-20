@@ -3,18 +3,18 @@
  * SimplySign WebService Client
  */
 
-namespace SimplySign\Client;
+namespace Webinv\SimplySign\Client;
 
-use SimplySign\Client;
-use SimplySign\Exception;
-use SimplySign\Model\Pades\SigningRequest;
+use Webinv\SimplySign\Client;
+use Webinv\SimplySign\Exception;
+use Webinv\SimplySign\Model\Pades\SigningRequest;
 use Ramsey\Uuid\Uuid;
-use SimplySign\Model\Token;
+use Webinv\SimplySign\Model\Token;
 
 /**
  * Class SignatureFormatServicePades
  *
- * @package SimplySign\Client
+ * @package Webinv\SimplySign\Client
  * @author Krzysztof Kardasz <krzysztof@kardasz.eu>
  */
 class SignatureFormatServicePades extends Client

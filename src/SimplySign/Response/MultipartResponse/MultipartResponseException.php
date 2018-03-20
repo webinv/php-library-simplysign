@@ -3,13 +3,13 @@
  * SimplySign WebService Client
  */
 
-namespace SimplySign\Response\MultipartResponse;
+namespace Webinv\SimplySign\Response\MultipartResponse;
 
-use SimplySign\Exception;
+use Webinv\SimplySign\Exception;
 
 /**
  * Class Exception
- * @package SimplySign\Response\MultipartResponse
+ * @package Webinv\SimplySign\Response\MultipartResponse
  * @author Krzysztof Kardasz <krzysztof@kardasz.eu>
  */
 class MultipartResponseException extends Exception

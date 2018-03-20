@@ -3,11 +3,11 @@
  * SimplySign WebService Client
  */
 
-namespace SimplySign\Response\MultipartResponse;
+namespace Webinv\SimplySign\Response\MultipartResponse;
 
 /**
  * Class MultipartItem
- * @package SimplySign\Response\MultipartResponse
+ * @package Webinv\SimplySign\Response\MultipartResponse
  * @author Krzysztof Kardasz <krzysztof@kardasz.eu>
  */
 class MultipartItem

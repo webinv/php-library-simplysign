@@ -1,5 +1,12 @@
 # About
 
+[![Build Status](https://travis-ci.org/webinv/php-library-simplysign.svg?branch=master)](https://travis-ci.org/webinv/php-library-simplysign)
+[![Latest Stable Version](https://poser.pugx.org/webinv/simplysign/v/stable)](https://packagist.org/packages/webinv/simplysign)
+[![Total Downloads](https://poser.pugx.org/webinv/simplysign/downloads)](https://packagist.org/packages/webinv/simplysign)
+[![Latest Unstable Version](https://poser.pugx.org/webinv/simplysign/v/unstable)](https://packagist.org/packages/webinv/simplysign)
+[![License](https://poser.pugx.org/webinv/simplysign/license)](https://packagist.org/packages/webinv/simplysign)
+
+
 SimplySign webservice client
 
 # Installation

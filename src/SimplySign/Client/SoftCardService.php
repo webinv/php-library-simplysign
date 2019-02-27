@@ -22,6 +22,62 @@ class SoftCardService extends Client
 {
     /**
      * @param Token $token
+     *
+     * @return mixed
+     * @throws Exception
+     * @throws \GuzzleHttp\Exception\GuzzleException
+     */
+    public function getCards(Token $token)
+    {
+        $results = $this->createCardsTask($token);
+
+        if (!isset($results['state'])) {
+            throw new Exception('Invalid response, missing "state" param');
+        }
+
+        if ($results['state'] == 'pending' && isset($results['ping-after'])) {
+            usleep((int)$results['ping-after']);
+        }
+
+        if (!isset($results['atom:link'])) {
+            throw new Exception('Invalid response, missing "atom:link" param');
+        }
+
+        $results = $this->getTask($results['atom:link'], $token);
+
+        if (!isset($results['state'])) {
+            throw new Exception('Invalid response, missing "state" param');
+        }
+
+        if ($results['state'] != 'done') {
+            throw new Exception(sprintf('Invalid response, state: %s', $results['state']));
+        }
+
+        if (!isset($results['atom:link'])) {
+            throw new Exception('Invalid response, missing "atom:link" param');
+        }
+
+        $response = $this->getConnection()->getHttpClient()->request(
+            'GET',
+            sprintf('%s%s', $this->getConnection()->getDomain(), parse_url($results['atom:link'], PHP_URL_PATH)),
+            [
+                'headers' => [
+                    'Authorization' => sprintf(
+                        '%s %s',
+                        $token->getTokenType(),
+                        $token->getAccessToken()
+                    ),
+                    'Accept' => 'application/json'
+                ],
+                'allow_redirects' => false
+            ]
+        );
+
+        return $this->_parseResponse($response);
+    }
+
+    /**
+     * @param Token $token
      * @return mixed
      * @throws Exception
      * @throws \GuzzleHttp\Exception\GuzzleException

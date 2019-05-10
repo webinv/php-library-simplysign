@@ -28,6 +28,35 @@ class SignatureServiceXades extends Client
      */
     public function createSignTask(SigningRequest $signingRequest, Token $token)
     {
+        $multipart=[
+                        [
+                            'name'     => 'certificate',
+                            'filename' => 'cert.pem',
+                            'contents' => $signingRequest->getCertificate()
+                        ],
+                        [
+                            'name'     => 'files',
+                            'filename' => empty($signingRequest->getFileName())?'file.xml':$signingRequest->getFileName(),
+                            'contents' => $signingRequest->getFile(),
+                            'headers'  => ['Content-Type' => 'application/xml']
+                        ],
+                        [
+                            'name'     => 'params',
+                            'filename' => 'profile.json',
+                            'contents' => json_encode($signingRequest)
+                            
+                        ],
+                    ];
+        foreach($signingRequest->getAttachments() as $a){
+            $multipart[]=[
+                        'name'     => 'files',
+                        'filename' => $a->getFileName(),
+                        'contents' => $a->getFile(),
+                        //'headers'  => ['Content-Type' => 'application/xml']
+                    ];
+        }
+                    
+        
         $response = $this->getConnection()->getHttpClient()->request(
             'POST',
             sprintf('%s/sfsx/1.0/signature', $this->getConnection()->getDomain()),
@@ -40,25 +69,7 @@ class SignatureServiceXades extends Client
                     ),
                     'Accept' => 'application/json'
                 ],
-                'multipart' => [
-                    [
-                        'name'     => 'certificate',
-                        'filename' => 'cert.pem',
-                        'contents' => $signingRequest->getCertificate()
-                    ],
-                    [
-                        'name'     => 'files',
-                        'filename' => empty($signingRequest->getFileName())?'file.xml':$signingRequest->getFileName(),
-                        'contents' => $signingRequest->getFile(),
-                        //'headers'  => ['Content-Type' => 'application/xml']
-                    ],
-                    [
-                        'name'     => 'params',
-                        'filename' => 'profile.json',
-                        'contents' => json_encode($signingRequest)
-                        
-                    ],
-                ]
+                'multipart' => $multipart
             ]
         );
 
@@ -120,6 +131,7 @@ class SignatureServiceXades extends Client
         }
         //service sometimes need more time
         if ($results['state'] == 'pending' && isset($results['ping-after'])) {
+            usleep((int)$results['ping-after']);
             usleep((int)$results['ping-after']);
             
             $results = $this->getTask($results['atom:link'], $token);

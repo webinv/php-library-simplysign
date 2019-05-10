@@ -41,6 +41,11 @@ class SigningRequest implements \JsonSerializable
      */
     private $settings;
     
+    /**
+     * @var Attachments
+     */
+    private $attachments=array();
+    
     
     /**
      * @return Credentials
@@ -162,6 +167,44 @@ class SigningRequest implements \JsonSerializable
     public function setSettings($settings)
     {
         $this->settings = $settings;
+        return $this;
+    }
+    
+    /**
+     * @return array of Attachment signature settings
+     */
+    public function getAttachments()
+    {
+        return $this->attachments;
+    }
+
+    /**
+     * @param array $attachments  attachments
+     * @return $this
+     */
+    public function setAttachments($attachments)
+    {
+        $this->attachments = $attachments;
+        return $this;
+    }
+    
+    /**
+     * Add attachment to internal array of attachments
+     * @param Attachment $attachment attachment
+     * @return $this
+     */
+    public function addAttachment($attachment)
+    {
+        $this->attachments[] = $attachment;
+        return $this;
+    }
+    /**
+     * Clear internal array of attachments
+     * @return $this
+     */
+    public function clearAttachments()
+    {
+        $this->attachments=array();
         return $this;
     }
 

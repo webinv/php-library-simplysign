@@ -15,10 +15,9 @@ class Settings implements \JsonSerializable
 {
     
     /* templates - default settings*/
-    //not supported yet
-    //const TEMPLATE_DETACHED = 'xades-bes-detached';
-    //const TEMPLATE_T_DETACHED = 'xades-t-detached';
-    //const TEMPLATE_TQ_DETACHED = 'xades-tq-detached';
+    const TEMPLATE_DETACHED = 'xades-bes-detached';
+    const TEMPLATE_T_DETACHED = 'xades-t-detached';
+    const TEMPLATE_TQ_DETACHED = 'xades-tq-detached';
     
     const TEMPLATE_ENVELOPED = 'xades-bes-enveloped';
     const TEMPLATE_T_ENVELOPED = 'xades-t-enveloped';
@@ -35,7 +34,7 @@ class Settings implements \JsonSerializable
     const PROFILE_T = 'xades-bes';
     
     /* transform types */
-    //const TRANSFORM_DETACHED = 'detached';
+    const TRANSFORM_DETACHED = 'detached';
     const TRANSFORM_ENVELOPED = 'enveloped';
     const TRANSFORM_ENVELOPING = 'enveloping';
     

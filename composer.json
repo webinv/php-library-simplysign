@@ -1,5 +1,5 @@
 {
-    "name": "webinv/simplysign",
+    "name": "eideasy/simplysign",
     "description": "Certum SimplySign Client",
     "type": "library",
     "authors": [
@@ -20,12 +20,13 @@
     },
     "require": {
         "php": ">=5.5",
-        "ramsey/uuid": "^3.7",
+        "ramsey/uuid": ">=3.7",
         "guzzlehttp/guzzle": "^6.3",
-        "psr/log": "^1.0",
-        "monolog/monolog": "^1.23"
+        "psr/log": ">=1.0",
+        "monolog/monolog": ">=1.23",
+        "ext-json": "*"
     },
     "require-dev": {
-        "phpunit/phpunit": "^7.5"
+        "phpunit/phpunit": ">=7.5"
     }
 }

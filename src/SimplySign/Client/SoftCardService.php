@@ -191,7 +191,7 @@ class SoftCardService extends Client
         }
 
         if ($results['state'] != 'done') {
-            throw new Exception(sprintf('Invalid response, state: %s', $results['state']));
+            throw new Exception(sprintf('Invalid response, state: %s, message: %s', $results['state'], $results['message']));
         }
 
         if (!isset($results['atom:link'])) {

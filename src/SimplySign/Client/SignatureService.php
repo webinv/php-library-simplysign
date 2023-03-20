@@ -29,7 +29,7 @@ class SignatureService extends Client
     {
         $contents = [
             'pin' => $signingRequest->getCredentials()->getPin(),
-            'digests' => [$signingRequest->getHash()],
+            'digests' => $signingRequest->getHashes(),
             'digesttype' => 'SHA256',
         ];
 

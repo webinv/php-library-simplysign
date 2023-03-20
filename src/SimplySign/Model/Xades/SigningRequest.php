@@ -49,22 +49,22 @@ class SigningRequest implements \JsonSerializable
     /**
      * @var string
      */
-    private $hash;
+    private $hashes;
 
     /**
      * @return string
      */
-    public function getHash()
+    public function getHashes()
     {
-        return $this->hash;
+        return $this->hashes;
     }
 
     /**
-     * @param string $hash
+     * @param string $hashes
      */
-    public function setHash($hash)
+    public function setHashes($hashes)
     {
-        $this->hash = $hash;
+        $this->hashes = $hashes;
     }
     
     /**

@@ -46,23 +46,14 @@ class SigningRequest implements \JsonSerializable
      */
     private $attachments=array();
 
-    /**
-     * @var string
-     */
-    private $hashes;
+    private array $hashes;
 
-    /**
-     * @return string
-     */
-    public function getHashes()
+    public function getHashes(): array
     {
         return $this->hashes;
     }
 
-    /**
-     * @param string $hashes
-     */
-    public function setHashes($hashes)
+    public function setHashes(array $hashes)
     {
         $this->hashes = $hashes;
     }
